@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="container hide" id="menu">
+            <h1>Chat</h1>
+            <button class="blue_button left_button navigation" data-navigation="join">JOIN A ROOM</button>
+            <button class="red_button right_button navigation" data-navigation="create">CREATE A ROOM</button>
+        </div>
+        <div class="container hide" id="join">
+            <h1>Join a Room</h1>
+
+            <form action="" id="joinFrom" onsubmit="return false">
+                <input type="text" placeholder="Name" maxlength="10" name="name" required>
+                <input type="text" placeholder="Password" maxlength="10" name="password" required>
+                <button type="submit" class="blue_button rounded">ENTER ROOM</button>
+            </form>
+
+            <button class="red_button rounded back navigation" data-navigation="menu">BACK</button>
+        </div>
+        <div class="container hide" id="create">
+            <h1>Create a Room</h1>
+
+            <form action="" id="createFrom" onsubmit="return false">
+                <input type="text" placeholder="Name" maxlength="10" name="name" required>
+                <input type="text" placeholder="Password" maxlength="10" name="password" required>
+                <button type="submit" class="blue_button rounded">CREATE A ROOM</button>
+            </form>
+
+            <button class="red_button rounded navigation" data-navigation="menu">BACK</button>
+        </div>
+
+        <div class="container" id="chat" style="width: 30%;">
+            <h1 id="roomName">Chat</h1>
+
+            <div id="messages"></div>
+
+            <input type="text" placeholder="Message" maxlength="100" name="message" style="width:90%">
+            <button class="blue_button rounded" id="send" style="width:90%">SEND</button>
+
+            <button class="red_button rounded navigation" data-navigation="menu" style="width:50%">BACK</button>
+        </div>
+    </div>
+
+    <script type="module" src="/js/main.js"></script>
+</body>
+
+</html>
