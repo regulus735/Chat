@@ -1,4 +1,4 @@
-import * as json from 'formToJson.js';
+import * as json from './formToJson.js';
 
 const containers = document.querySelectorAll(".container"),
     messagesContainer = document.querySelector("#messages");
