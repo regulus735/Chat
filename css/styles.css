@@ -74,7 +74,7 @@ h1 {
     text-align: center;
 }
 
-input[type=text] {
+input {
     background: transparent;
     border: none;
     border-bottom: 2px solid gray;
