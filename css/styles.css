@@ -94,9 +94,7 @@ input[type=text]:focus {
 }
 
 .hide {
-    visibility: hidden;
-  
-/*     display: none; */
+    display: none;
 }
 
 #messages {
