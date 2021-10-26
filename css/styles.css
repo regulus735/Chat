@@ -18,7 +18,8 @@ body, input, button {
 
 .container {
     margin: 0 auto;
-    transition-duration: 1s;
+    opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
 }
 
 button {
@@ -95,7 +96,9 @@ input[type=text]:focus {
 }
 
 .hide {
-    display: none;
+    visibility: hidden;
+  
+/*     display: none; */
 }
 
 #messages {
