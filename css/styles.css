@@ -18,7 +18,7 @@ body, input, button {
 
 .container {
     margin: 0 auto;
-    transition-duration: 0.2s;
+    transition-duration: 1s;
 }
 
 button {
