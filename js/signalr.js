@@ -1,7 +1,8 @@
 export class Signalr {
     constructor(messagesContainer) {
         this.connection = new signalR.HubConnectionBuilder()
-            .withUrl("https://localhost:5001/chathub")
+            // .withUrl("https://localhost:5001/chathub")
+            .withUrl("https://chat-api-app.azurewebsites.net/chathub")
             .configureLogging(signalR.LogLevel.Information)
             .build();
 
