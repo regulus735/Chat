@@ -1,60 +1,55 @@
 export class Signalr {
-    connection() {
-        document.addEventListener("DOMContentLoaded", () => {
+    constructor(messagesContainer) {
+        this.connection = new signalR.HubConnectionBuilder()
+            .withUrl("https://localhost:5001/chathub")
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
 
-            const connection = new signalR.HubConnectionBuilder()
-                .withUrl("https://localhost:5001/chathub")
-                .configureLogging(signalR.LogLevel.Information)
-                .build();
+        this.connection.on("ReceiveMessage", (user, message) => {
+            const newP = document.createElement("p");
+            messagesContainer.appendChild(newP);
+            newP.textContent = `${user}>`;
 
+            let indexText = 0;
+            const indexTyping = setInterval(() => {
+                newP.textContent += message[indexText];
+                indexText++;
+                if(indexText === message.length)
+                    clearInterval(indexTyping);
+            }, 50);
+        });
 
-            connection.on("ReceiveMessage", (user, message) => {
-                console.log(user);
-                const li = document.createElement("li");
-                li.textContent = `${user}: ${message}`;
-                document.getElementById("messageList").appendChild(li);
-            });
+        // this.connection.on("UserOnline", (user, status) => {
+        //     console.log(`${user} ${status}`);
+        // });
 
-            connection.on("UserOnline", (user, status) => {
-                console.log(`${user} ${status}`);
-            });
+        // this.connection.onclose(async () => {
+        //     connection.invoke("Connection", "PrivateGroup", "Disconnected").catch(err => {
+        //         return console.error(err.toString());
+        //     });
+        //     await this.start();
+        // });
 
+        this.start();
+    }
 
+    async start() {
+        try {
+            await this.connection.start();
+            console.log("SignalR Connected.");
+        } catch (err) {
+            console.log(err);
+            setTimeout(this.start, 5000);
+        }
+    };
 
-            document.getElementById("join").addEventListener("click", async () => {
-                connection.invoke("JoinGroup", "PrivateGroup").catch(err => {
-                    return console.error(err.toString());
-                });
-            });
-
-            async function start() {
-                try {
-                    await connection.start();
-                    console.log("SignalR Connected.");
-                } catch (err) {
-                    console.log(err);
-                    setTimeout(start, 5000);
-                }
-            };
-
-            connection.onclose(async () => {
-                connection.invoke("Connection", "PrivateGroup", "Disconnected").catch(err => {
-                    return console.error(err.toString());
-                });
-                await start();
-            });
-
-            start();
+    sendMessage(data, message) {
+        this.connection.invoke("SendMessageToGroup", data.group, data.username, message).catch(err => {
+            return console.error(err.toString());
         });
     }
 
-    sendMessage(name, data) {
-        document.querySelector(name).addEventListener("click", async () => {
-            const user = document.getElementById("user").value;
-            const message = document.getElementById("message").value;
-            connection.invoke("SendMessageToGroup", "PrivateGroup", user, message).catch(err => {
-                return console.error(err.toString());
-            });
-        });
-    }
+    join(data) {
+        return this.connection.invoke("JoinGroup", data.name, data.password);
+    };
 }

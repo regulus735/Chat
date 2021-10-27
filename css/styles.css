@@ -74,7 +74,7 @@ h1 {
     text-align: center;
 }
 
-input[type=text] {
+input {
     background: transparent;
     border: none;
     border-bottom: 2px solid gray;
@@ -85,7 +85,7 @@ input[type=text] {
     margin-top: 10px;
 }
 
-input[type=text]:focus {
+input:focus {
     outline: none;
 }
 
@@ -102,11 +102,42 @@ input[type=text]:focus {
     background: #171a2b;
     overflow: scroll;
     overflow-x: hidden;
-    padding: 0 10px 0 10px;
+    padding: 5px 10px 0 10px;
+    font-family: Ubuntu Mono; 
+}
+
+#chat {
+    width: 600px;
+}
+
+#chat button, #chat input {
+    width: 500px;
+}
+
+#chat :last-child {
+    width: 300px;
+}
+
+@media screen and (max-width: 600px) {
+    #chat {
+        width: 100%;
+    }
+
+    #chat button, #chat input {
+        width: 80%;
+    }
+    
+    #chat :last-child {
+        width: 50%;
+    }
 }
 
 p {
     margin: 0;
+}
+
+.wrong_border{
+    border-color: red;
 }
 
 ::-webkit-scrollbar {
