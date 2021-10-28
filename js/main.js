@@ -5,8 +5,8 @@ import { fetchClass } from './fetchData.js';
 const containers = document.querySelectorAll(".container"),
     messagesContainer = document.querySelector("#messages");
 
-// const url = "https://localhost:5001/api/room/";
-const url = 'https://chat-api-app.azurewebsites.net/api/room/';
+const url = "https://localhost:5001/api/room/";
+// const url = 'https://chat-api-app.azurewebsites.net/api/room/';
 
 const roomParams = {
     username: null,
