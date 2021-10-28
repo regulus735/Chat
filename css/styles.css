@@ -134,6 +134,7 @@ input:focus {
 
 p {
     margin: 0;
+    width: 100% !important;
 }
 
 .wrong_border{
