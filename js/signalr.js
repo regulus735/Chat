@@ -7,15 +7,21 @@ export class Signalr {
             .build();
 
         this.connection.on("ReceiveMessage", (user, message) => {
-            const newP = document.createElement("p");
-            messagesContainer.appendChild(newP);
-            newP.textContent = `${user}>`;
+            //paragraph z imieniem
+            const nameP = document.createElement("p");
+            nameP.textContent = `${user}>`;
+            messagesContainer.appendChild(nameP);
+
+            //message w paragraphie
+            const messageP = document.createElement("span");
+            messageP.style = "color: white";
+            nameP.appendChild(messageP);
 
             let indexText = 0;
             const indexTyping = setInterval(() => {
-                newP.textContent += message[indexText];
+                messageP.textContent += message[indexText];
                 indexText++;
-                if(indexText === message.length)
+                if (indexText === message.length)
                     clearInterval(indexTyping);
             }, 50);
         });

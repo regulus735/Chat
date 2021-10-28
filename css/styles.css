@@ -135,6 +135,7 @@ input:focus {
 p {
     margin: 0;
     width: 100% !important;
+    color: #88E234;
 }
 
 .wrong_border{
